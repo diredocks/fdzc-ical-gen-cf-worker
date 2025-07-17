@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      htmlrewriter:
+        specifier: ^0.0.13
+        version: 0.0.13
+
+packages:
+
+  htmlrewriter@0.0.13:
+    resolution: {integrity: sha512-HPxT+y/i9RzNeKrJ6MBFXwB+FeTfHPfcBzoKHVnk3oiKn2s6x13tLoxjggI+0/yOSBG1n8SV//PGDBJYT/4XQw==}
+
+snapshots:
+
+  htmlrewriter@0.0.13: {}

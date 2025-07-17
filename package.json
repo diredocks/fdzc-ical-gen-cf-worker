@@ -1,0 +1,6 @@
+{
+  "type": "module",
+	"dependencies": {
+		"htmlrewriter": "^0.0.13"
+	}
+}

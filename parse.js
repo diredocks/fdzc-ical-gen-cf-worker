@@ -1,5 +1,11 @@
 import { HTMLRewriter } from "htmlrewriter";
 
+// https://qwtel.com/posts/software/how-to-use-htmlrewriter-for-web-scraping/
+async function consume(stream) {
+  const reader = stream.getReader();
+  while (!(await reader.read()).done) { /* NOOP */ }
+}
+
 export default async function (html) {
   let leftTable = [];
   let rightTable = [];
@@ -7,7 +13,7 @@ export default async function (html) {
   let rightCurrentCourse = [];
   const response = new Response(html);
 
-  await new HTMLRewriter()
+  const rewriter = new HTMLRewriter()
     // 左表格
     .on("body > table:nth-child(3) td tr:not([height]):not([id])", {
       element() {
@@ -38,8 +44,7 @@ export default async function (html) {
         if (trimmed) rightCurrentCourse.push(trimmed);
       },
     })
-    .transform(response)
-    .text(); // FIXME: make await happy
+  await consume(rewriter.transform(response).body);
 
   // 添加最后一项
   if (leftCurrentCourse.length > 0) leftTable.push(leftCurrentCourse);

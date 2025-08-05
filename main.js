@@ -24,7 +24,7 @@ const courses = (await parseFullTable(html)).map((c) => {
 
 const school = new School({
   start: [2025, 9, 8], // TODO: auto retrieve
-  timetable: timetable,
+  timetable,
   courses,
 });
 

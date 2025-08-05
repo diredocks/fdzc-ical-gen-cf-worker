@@ -1,3 +1,4 @@
 *.html
 *.ics
+*.bmp
 node_modules

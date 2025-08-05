@@ -1,6 +1,7 @@
 {
-  "type": "module",
+	"type": "module",
 	"dependencies": {
+		"fast-bmp": "^4.0.0",
 		"htmlrewriter": "^0.0.13"
 	}
 }

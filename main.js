@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { Course, School } from "./ical.js";
-import { parseFullTable } from "./parse.js";
+import { parseFullTable, parseLoginLink } from "./parse.js";
 
 const html = await readFile("./now.html", "utf-8");
 
@@ -40,3 +40,6 @@ const school = new School({
 
 const icsText = school.generate();
 console.log(icsText);
+
+const html1 = await readFile("./index.html", "utf-8");
+console.log(await parseLoginLink(html1));

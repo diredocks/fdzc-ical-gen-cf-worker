@@ -6,6 +6,19 @@ async function consume(stream) {
   while (!(await reader.read()).done) { /* NOOP */ }
 }
 
+export async function parseLoginLink(hmtl) {
+  let link = "";
+  const response = new Response(hmtl);
+  const rewriter = new HTMLRewriter()
+    .on("#frm", {
+      element(el) {
+        link = "https://jwc.fdzcxy.edu.cn/" + el.getAttribute("action");
+      }
+    });
+  await consume(rewriter.transform(response).body);
+  return link;
+}
+
 export async function parseFullTable(html) {
   let leftTable = [];
   let rightTable = [];

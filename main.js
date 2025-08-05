@@ -1,10 +1,10 @@
 import { readFile } from "node:fs/promises";
 import { Course, School } from "./ical.js";
-import parse_html from "./parse.js";
+import { parseFullTable } from "./parse.js";
 
 const html = await readFile("./now.html", "utf-8");
 
-const courses = (await parse_html(html)).map((c) => {
+const courses = (await parseFullTable(html)).map((c) => {
   const weeks = c.odd
     ? Course.oddWeek(...c.week)
     : c.even

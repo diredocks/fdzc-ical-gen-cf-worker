@@ -6,7 +6,7 @@ async function consume(stream) {
   while (!(await reader.read()).done) { /* NOOP */ }
 }
 
-export default async function (html) {
+export async function parseFullTable(html) {
   let leftTable = [];
   let rightTable = [];
   let leftCurrentCourse = [];

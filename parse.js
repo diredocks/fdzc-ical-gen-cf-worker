@@ -12,7 +12,7 @@ export async function parseLoginLink(hmtl) {
   const rewriter = new HTMLRewriter()
     .on("#frm", {
       element(el) {
-        link = "https://jwc.fdzcxy.edu.cn/" + el.getAttribute("action");
+        link = el.getAttribute("action");
       }
     });
   await consume(rewriter.transform(response).body);

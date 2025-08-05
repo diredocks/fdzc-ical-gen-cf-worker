@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { Course, School } from "./ical.js";
 import { parseFullTable, parseLoginLink } from "./parse.js";
+import { recognizeCaptcha } from "./captcha.js";
+import { timetable } from "./const.js";
 
 const html = await readFile("./now.html", "utf-8");
 
@@ -22,19 +24,7 @@ const courses = (await parseFullTable(html)).map((c) => {
 
 const school = new School({
   start: [2025, 9, 8], // TODO: auto retrieve
-  timetable: [
-    [8, 0], // 上午第一节课
-    [8, 55],
-    [10, 0],
-    [10, 55],
-    [14, 0], // 下午第一节课
-    [14, 55],
-    [16, 0],
-    [16, 55],
-    [19, 0], // 晚自习
-    [19, 55],
-    [20, 50],
-  ],
+  timetable: timetable,
   courses,
 });
 
@@ -43,3 +33,6 @@ console.log(icsText);
 
 const html1 = await readFile("./index.html", "utf-8");
 console.log(await parseLoginLink(html1));
+
+const img = await readFile("./captcha.bmp");
+console.log(recognizeCaptcha(img));

@@ -1,10 +1,10 @@
 import { readFile } from "node:fs/promises";
+import { Course, School } from "./ical.js";
 import parse_html from "./parse.js";
-import { Course, School } from './ical.js';
 
 const html = await readFile("./now.html", "utf-8");
 
-const courses = (await parse_html(html)).map(c => {
+const courses = (await parse_html(html)).map((c) => {
   const weeks = c.odd
     ? Course.oddWeek(...c.week)
     : c.even
@@ -23,15 +23,15 @@ const courses = (await parse_html(html)).map(c => {
 const school = new School({
   start: [2025, 9, 8], // TODO: auto retrieve
   timetable: [
-    [8, 0],  // 上午第一节课
+    [8, 0], // 上午第一节课
     [8, 55],
     [10, 0],
     [10, 55],
-    [14, 0],  // 下午第一节课
+    [14, 0], // 下午第一节课
     [14, 55],
     [16, 0],
     [16, 55],
-    [19, 0],  // 晚自习
+    [19, 0], // 晚自习
     [19, 55],
     [20, 50],
   ],

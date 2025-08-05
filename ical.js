@@ -1,5 +1,5 @@
-import fs from "fs";
 import crypto from "crypto";
+import fs from "fs";
 
 export class Course {
   constructor({ name, teacher, classroom, location, weekday, weeks, indexes }) {

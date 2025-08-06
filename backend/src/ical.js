@@ -1,5 +1,4 @@
 import crypto from "crypto";
-import fs from "fs";
 
 export class Course {
   constructor({ name, teacher, classroom, location, weekday, weeks, indexes }) {
@@ -146,46 +145,5 @@ export class School {
     }
 
     return lines.join("\n");
-  }
-}
-
-export class AppleMaps {
-  constructor(icsPath) {
-    const content = fs.readFileSync(icsPath, "utf-8");
-    this.locations = {};
-    const events = content.match(/BEGIN:VEVENT[\s\S]*?END:VEVENT/g) || [];
-    for (const event of events) this.parse(event);
-  }
-
-  parse(event) {
-    const lines = event.split("\n");
-    for (let i = 1; i < lines.length; i++) {
-      if (lines[i].startsWith(" ")) {
-        lines[i - 1] += lines[i].slice(1);
-        lines[i] = "";
-      }
-    }
-    const data = {};
-    for (const key of ["SUMMARY", "LOCATION", "X-APPLE-STRUCTURED-LOCATION"]) {
-      data[key] = lines.find((l) => l.startsWith(key)) || "";
-    }
-    if (Object.values(data).some((v) => !v)) return;
-
-    const title = data["SUMMARY"].replace("SUMMARY:", "").trim();
-    const geoMatch = data["X-APPLE-STRUCTURED-LOCATION"].match(
-      /geo:([\d.]+),([\d.]+)/,
-    );
-    if (geoMatch) {
-      data["GEO"] = new Geo(title, geoMatch[1], geoMatch[2]).geo;
-    }
-    this.locations[title] = data;
-  }
-
-  get(key) {
-    if (!(key in this.locations)) {
-      const known = Object.keys(this.locations).join(", ");
-      throw new Error(`没有找到 ${key} 的 Apple Maps 信息。已知地点：${known}`);
-    }
-    return Object.values(this.locations[key]);
   }
 }

@@ -6,17 +6,36 @@ async function consume(stream) {
   while (!(await reader.read()).done) { /* NOOP */ }
 }
 
-export async function parseLoginLink(hmtl) {
+export async function parseLoginLink(html) {
+  const response = new Response(html);
   let link = "";
-  const response = new Response(hmtl);
+  
   const rewriter = new HTMLRewriter()
     .on("#frm", {
-      element(el) {
-        link = el.getAttribute("action");
-      }
+      element: (el) => link = el.getAttribute("action")
     });
+  
   await consume(rewriter.transform(response).body);
   return link;
+}
+
+export async function parseBeginDate(html) {
+  const response = new Response(html);
+  let date = "";
+  
+  const datePattern = /\d{4}\/\d{1,2}\/\d{1,2}/;
+  const rewriter = new HTMLRewriter()
+    .on("strong", {
+      text: ({ text }) => {
+        if (text.trim()) {
+          const match = text.match(datePattern);
+          if (match) date = match[0];
+        }
+      }
+    });
+  
+  await consume(rewriter.transform(response).body);
+  return date;
 }
 
 export async function parseFullTable(html) {

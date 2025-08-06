@@ -1,6 +1,6 @@
 # fdzc-ical-gen-cf-worker
 
-Seek timetable like a pro @ Fuzhou University Zhicheng College  
+View Your Timetable Like a Pro @ Fuzhou University Zhicheng College  
 
 ![Preview](https://github.com/user-attachments/assets/072d41fc-cf95-497f-bf51-e8e356d251a3)
 

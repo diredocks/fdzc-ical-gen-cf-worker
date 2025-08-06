@@ -27,11 +27,12 @@ If you prefer, you're welcome to self-host your own deployment for complete cont
 
 To deploy your own instance:
 
-   ```bash
-   git clone https://github.com/yourusername/fdzc-ical-gen-cf-worker.git
-   cd fdzc-ical-gen-cf-worker/backend
-   wrangler deploy
-   ```
+```bash
+git clone https://github.com/yourusername/fdzc-ical-gen-cf-worker.git
+cd fdzc-ical-gen-cf-worker/backend
+pnpm i
+wrangler deploy
+```
 
 > You'll need a Cloudflare account and API credentials to deploy.
 

@@ -1,0 +1,46 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      fast-bmp:
+        specifier: ^4.0.0
+        version: 4.0.0
+      hono:
+        specifier: ^4.8.12
+        version: 4.8.12
+      htmlrewriter:
+        specifier: ^0.0.13
+        version: 0.0.13
+
+packages:
+
+  fast-bmp@4.0.0:
+    resolution: {integrity: sha512-/K6GpDRBDJ5hUZuRnmi7KyutDRKXM0zjYmHBW1G7awwOFGOw5Lh+8kpsO5NAmAc4RfMTpujMc7v8RcffM9g0vA==}
+
+  hono@4.8.12:
+    resolution: {integrity: sha512-MQSKk1Mg7b74k8l+A025LfysnLtXDKkE4pLaSsYRQC5iy85lgZnuyeQ1Wynair9mmECzoLu+FtJtqNZSoogBDQ==}
+    engines: {node: '>=16.9.0'}
+
+  htmlrewriter@0.0.13:
+    resolution: {integrity: sha512-HPxT+y/i9RzNeKrJ6MBFXwB+FeTfHPfcBzoKHVnk3oiKn2s6x13tLoxjggI+0/yOSBG1n8SV//PGDBJYT/4XQw==}
+
+  iobuffer@6.0.0:
+    resolution: {integrity: sha512-sEIVQ307ZoqUxFl2P1oS3G6YLzYcQbvHCdAF7bS26cnfACkpFseR6ifwSAevTf3pItPjAbUpokLam0H7ZpMxQA==}
+
+snapshots:
+
+  fast-bmp@4.0.0:
+    dependencies:
+      iobuffer: 6.0.0
+
+  hono@4.8.12: {}
+
+  htmlrewriter@0.0.13: {}
+
+  iobuffer@6.0.0: {}

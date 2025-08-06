@@ -9,31 +9,34 @@ async function consume(stream) {
 export async function parseLoginLink(html) {
   const response = new Response(html);
   let link = "";
-  
+
   const rewriter = new HTMLRewriter()
     .on("#frm", {
       element: (el) => link = el.getAttribute("action")
     });
-  
+
   await consume(rewriter.transform(response).body);
   return link;
 }
 
 export async function parseBeginDate(html) {
   const response = new Response(html);
-  let date = "";
-  
-  const datePattern = /\d{4}\/\d{1,2}\/\d{1,2}/;
+  let date = [];
+
+  const datePattern = /(\d{4})\/(\d{1,2})\/(\d{1,2})/;
   const rewriter = new HTMLRewriter()
     .on("strong", {
       text: ({ text }) => {
         if (text.trim()) {
           const match = text.match(datePattern);
-          if (match) date = match[0];
+          if (match) {
+            const [, year, month, day] = match;
+            date = [parseInt(year, 10), parseInt(month, 10), parseInt(day, 10)];
+          }
         }
       }
     });
-  
+
   await consume(rewriter.transform(response).body);
   return date;
 }

@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 export class Course {
   constructor({ name, teacher, classroom, location, weekday, weeks, indexes }) {
